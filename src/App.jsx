@@ -74,7 +74,9 @@ function isLineClient() {
 }
 
 function shouldUsePreviewMode() {
-  return isPreviewEnvironment() || !isLineClient();
+  // 只有 Canvas、localhost、sandbox 才進預覽模式。
+  // Vercel 正式網址即使不是在 LINE App 裡開，也應該進入正式流程，讓 LIFF login / GAS API 可以運作。
+  return isPreviewEnvironment();
 }
 
 function canUseRealApi(previewMode, configured) {
